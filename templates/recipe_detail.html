@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block title %}
+{{ recipe.name }}
+{% endblock %}
+
+{% block body %}
+<div class="container mt-10">
+    <div class="content-section">
+        <div class="media">
+            {% if recipe == 0 %}
+            <p>У нас ещё нет рецептов</p>
+            {% else %}
+        </div>
+        <div class="media-body">
+            <h2 class="recipe-heading">{{ recipe.name }}</h2>
+            <h5 class="text-black">{{ recipe.ingredients }}</h5>
+            <h5 class="text-black">{{ recipe.description }}</h5>
+            <div class="content-section">
+            <small class="text-secondary">Дата добавления: {{ recipe.date_updated.strftime('%d-%m-%Y') }}</small>
+            </div>
+            <div class="content-section">
+            <a class="btn btn-sm btn-outline-danger" href="#">Удалить</a>
+            <a class="btn btn-sm btn-outline-warning" href="#">Редактировать</a>
+            </div>
+        </div>
+            {% endif %}
+    </div>
+</div>
+{% endblock %}
