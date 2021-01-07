@@ -2,3 +2,4 @@
 
 from . import home_page_router
 from . import recipes_router
+from . import recipe_detail_router
