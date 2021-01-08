@@ -16,9 +16,12 @@ class Recipes(db.Model):
     image_file = db.Column(db.String(20), nullable=False, default='default.jpg')
     date_posted = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
     date_updated = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
+    category_id = db.Column(db.Integer, db.ForeignKey('categories.id'), nullable=False)
+    category = db.relationship('Categories', foreign_keys=[category_id])
 
     def __rerp__(self):
         """Representation string of an Recipes object."""
         return f"Recipes('{self.name}', " \
+               f"'{self.category_id}', " \
                f"'{self.date_posted}', " \
                f"'{self.date_updated}' "
