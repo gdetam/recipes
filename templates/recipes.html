@@ -15,6 +15,9 @@
     <div class="media-body">
         <h3 class="recipe-heading">{{ recipe.name }}</h3>
         <div class="content-section">
+        <a class="recipe-heading" href="/categories/{{ recipe.category.id }}">{{ recipe.category.name }}</a>
+        </div>
+        <div class="content-section">
         <small class="text-secondary">Дата добавления: {{ recipe.date_updated.strftime('%d-%m-%Y') }}</small>
         </div>
         <div class="content-section">
