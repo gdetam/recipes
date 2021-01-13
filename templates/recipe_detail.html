@@ -23,7 +23,7 @@
             <small class="text-secondary">Дата добавления: {{ recipe.date_updated.strftime('%d-%m-%Y') }}</small>
             </div>
             <div class="content-section">
-            <a class="btn btn-sm btn-outline-danger" href="#">Удалить</a>
+            <a class="btn btn-sm btn-outline-danger" href="/recipes/{{ recipe.id }}/delete">Удалить</a>
             <a class="btn btn-sm btn-outline-warning" href="/recipes/{{ recipe.id }}/update">Редактировать</a>
             </div>
         </div>
