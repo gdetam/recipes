@@ -27,7 +27,7 @@ def register():
         db.session.add(user)
         db.session.commit()
         flash(f'Аккаунт {form.username.data} успешно зарегистрирован! Войдите в систему.', 'success')
-        return redirect(url_for('home'))
+        return redirect(url_for('login'))
     return render_template('register.html',
                            title='Регистрация',
                            form=form)
