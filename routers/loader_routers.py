@@ -8,4 +8,5 @@ from . import home_page_router
 from . import random_recipe_router
 from . import recipe_detail_router
 from . import recipes_router
+from . import register_router
 from . import update_recipe_router

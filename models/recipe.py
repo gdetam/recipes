@@ -23,5 +23,7 @@ class Recipes(db.Model):
         """Representation string of an Recipes object."""
         return f"Recipes('{self.name}', " \
                f"'{self.category_id}', " \
+               f"'{self.user_id}', " \
                f"'{self.date_posted}', " \
-               f"'{self.date_updated}' "
+               f"'{self.date_updated}', " \
+               f"'{self.image_file}')"

@@ -23,7 +23,6 @@ def create_recipe():
             recipe = Recipes(name=form.name.data,
                              ingredients=form.ingredients.data,
                              description=form.description.data,
-                             image_file='default.jpg',
                              date_posted=datetime.utcnow(),
                              date_updated=datetime.utcnow(),
                              category_id=form.category.data)
