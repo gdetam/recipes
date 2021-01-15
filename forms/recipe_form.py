@@ -3,6 +3,7 @@
 from db.db_queries.get_categories_query import get_categories_list
 
 from flask_wtf import FlaskForm
+from flask_wtf.file import FileAllowed, FileField
 
 from wtforms import SelectField, StringField, SubmitField, TextAreaField
 from wtforms.validators import DataRequired, Length
@@ -22,4 +23,6 @@ class RecipeForm(FlaskForm):
                            coerce=int,
                            validators=[DataRequired()],
                            choices=categories_list)
+    picture = FileField('Загрузить фото:',
+                        validators=[FileAllowed(['jpg', 'jpeg', 'png'])])
     submit = SubmitField('Сохранить')

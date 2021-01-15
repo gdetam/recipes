@@ -13,6 +13,8 @@ from forms.recipe_form import RecipeForm
 from models.db import db
 from models.recipe import Recipes
 
+from routers.picture_saver import save_picture
+
 
 @app.route('/recipe/create', methods=['POST', 'GET'])
 def create_recipe():
@@ -20,9 +22,11 @@ def create_recipe():
     form = RecipeForm()
     if request.method == 'POST':
         if form.validate_on_submit():
+            picture_file = save_picture(form.picture.data)
             recipe = Recipes(name=form.name.data,
                              ingredients=form.ingredients.data,
                              description=form.description.data,
+                             image_file=picture_file,
                              date_posted=datetime.utcnow(),
                              date_updated=datetime.utcnow(),
                              category_id=form.category.data)

@@ -12,6 +12,8 @@ from forms.recipe_form import RecipeForm
 
 from models.db import db
 
+from routers.picture_saver import save_picture
+
 
 @app.route('/recipes/<int:recipe_id>/update', methods=['POST', 'GET'])
 def update_recipe(recipe_id: int):
@@ -19,6 +21,8 @@ def update_recipe(recipe_id: int):
     recipe = get_recipe(recipe_id)
     form = RecipeForm()
     if form.validate_on_submit():
+        picture_file = save_picture(form.picture.data)
+        recipe.image_file = picture_file
         recipe.name = form.name.data
         recipe.ingredients = form.ingredients.data
         recipe.description = form.description.data
@@ -31,11 +35,15 @@ def update_recipe(recipe_id: int):
         form.name.data = recipe.name
         form.ingredients.data = recipe.ingredients
         form.description.data = recipe.description
+        form.picture.data = recipe.image_file
         form.category.data = recipe.category_id
+    image_file = url_for('static',
+                         filename='recipe_photos/' + recipe.image_file)
     categories = RecipeForm.categories_list
 
     return render_template('create_recipe.html',
                            title='Редактирование рецепта',
                            form=form,
                            categories=categories,
+                           image_file=image_file,
                            legend='Редактирование рецепта')

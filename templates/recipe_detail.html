@@ -11,6 +11,7 @@
             {% if recipe == 0 %}
             <p>У нас ещё нет рецептов</p>
             {% else %}
+            <img class="rounded-circle recipe-img" src="{{ url_for('static', filename='photos/' + recipe.image_file) }}" width="150" height="150">
         </div>
         <div class="media-body">
             <h2 class="recipe-heading">{{ recipe.name }}</h2>
