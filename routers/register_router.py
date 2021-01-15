@@ -11,13 +11,17 @@ from forms.registration_form import RegistrationForm
 from models.db import db
 from models.user import Users
 
+from routers.picture_saver import save_picture
+
 
 @app.route('/register', methods=['POST', 'GET'])
 def register():
     """Router for register page."""
+    if current_user.is_authenticated:
+        return redirect(url_for('home'))
     form = RegistrationForm()
     if form.validate_on_submit():
-        picture_file = 'default.jpg'
+        picture_file = save_picture(form.picture.data)
         current_user.image_file = picture_file
         hashed_password = bcrypt.generate_password_hash(form.password.data).decode('utf-8')
         user = Users(username=form.username.data,
