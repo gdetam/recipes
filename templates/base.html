@@ -11,9 +11,13 @@
         <a class="p-2 text-dark" href="{{ '/recipes' }}">Рецепты</a>
         <a class="p-2 text-dark" href="{{ '/categories' }}">Категории</a>
         <a class="p-2 text-dark" href="{{ url_for('random_recipe') }}">Случайный рецепт</a>
-        <a class="btn btn-outline-success mr-sm-2" href="{{ url_for('create_recipe') }}">Добавить рецепт</a>
-        <a class="btn btn-outline-primary" href="{{ '/login' }}">Войти</a>
-        <a class="btn btn-outline-secondary" href="{{ url_for('register') }}">Зарегистрироваться</a>
+        {% if current_user.is_authenticated %}
+            <a class="btn btn-outline-success mr-sm-2" href="{{ url_for('create_recipe') }}">Добавить рецепт</a>
+            <a class="btn btn-outline-secondary" href="{{ url_for('logout') }}">Выйти</a>
+        {% else %}
+            <a class="btn btn-outline-primary" href="{{ url_for('login') }}">Войти</a>
+            <a class="btn btn-outline-secondary" href="{{ url_for('register') }}">Зарегистрироваться</a>
+        {% endif %}
         </nav>
     </div>
 
