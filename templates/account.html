@@ -25,6 +25,13 @@
         </div>
         {% endif %}
 
+        <div class="content-section">
+        <h6 class="text-secondary">Добавленные рецепты:</h6>
+        {% for recipe in recipes %}
+        <a class="mr-2" href="/recipes/{{ recipe.id }}">{{ recipe.name }}</a>
+        </div>
+        {% endfor %}
+
     <form action="" method="post" enctype="multipart/form-data">
         {{ form.hidden_tag() }}
         <fieldset class="form-group">

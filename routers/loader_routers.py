@@ -9,6 +9,7 @@ from . import home_page_router
 from . import login_router
 from . import logout_router
 from . import picture_saver
+from . import public_account_router
 from . import random_recipe_router
 from . import recipe_detail_router
 from . import recipes_router

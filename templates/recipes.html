@@ -18,6 +18,7 @@
         <div class="content-section">
         <a class="recipe-heading" href="/categories/{{ recipe.category.id }}">{{ recipe.category.name }}</a>
         </div>
+        <a class="mr-2">Автор: <a href="/account/public/{{ recipe.author.id }}">{{ recipe.author.username }}</a></a>
         <div class="content-section">
         <small class="text-secondary">Дата добавления: {{ recipe.date_updated.strftime('%d-%m-%Y') }}</small>
         </div>
