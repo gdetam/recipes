@@ -21,8 +21,9 @@ def update_recipe(recipe_id: int):
     recipe = get_recipe(recipe_id)
     form = RecipeForm()
     if form.validate_on_submit():
-        picture_file = save_picture(form.picture.data)
-        recipe.image_file = picture_file
+        if form.picture.data:
+            picture_file = save_picture(form.picture.data)
+            recipe.image_file = picture_file
         recipe.name = form.name.data
         recipe.ingredients = form.ingredients.data
         recipe.description = form.description.data
@@ -38,7 +39,7 @@ def update_recipe(recipe_id: int):
         form.picture.data = recipe.image_file
         form.category.data = recipe.category_id
     image_file = url_for('static',
-                         filename='recipe_photos/' + recipe.image_file)
+                         filename='photos/' + recipe.image_file)
     categories = RecipeForm.categories_list
 
     return render_template('create_recipe.html',
