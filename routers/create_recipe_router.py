@@ -8,10 +8,13 @@ from flask import flash, redirect, \
                   render_template, request, \
                   url_for
 
+from flask_login import current_user
+
 from forms.recipe_form import RecipeForm
 
 from models.db import db
 from models.recipe import Recipes
+from models.user import Users
 
 from routers.picture_saver import save_picture
 
@@ -23,13 +26,15 @@ def create_recipe():
     if request.method == 'POST':
         if form.validate_on_submit():
             picture_file = save_picture(form.picture.data)
+            user_id = current_user.id
             recipe = Recipes(name=form.name.data,
                              ingredients=form.ingredients.data,
                              description=form.description.data,
                              image_file=picture_file,
                              date_posted=datetime.utcnow(),
                              date_updated=datetime.utcnow(),
-                             category_id=form.category.data)
+                             category_id=form.category.data,
+                             user_id=user_id)
             db.session.add(recipe)
             db.session.commit()
             flash(f'Рецепт {form.name.data} сохранен!', 'success')

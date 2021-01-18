@@ -18,6 +18,8 @@ class Recipes(db.Model):
     date_updated = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
     category_id = db.Column(db.Integer, db.ForeignKey('categories.id'), nullable=False)
     category = db.relationship('Categories', foreign_keys=[category_id])
+    user_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
+    user = db.relationship('Users', foreign_keys=[user_id])
 
     def __rerp__(self):
         """Representation string of an Recipes object."""
