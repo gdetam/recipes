@@ -18,3 +18,4 @@ from . import register_router
 from . import reset_password_router
 from . import update_recipe_router
 from . import update_user_router
+from . import users_router

@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Пользователи
+{% endblock %}
+
+{% block body %}
+    <div class="container mt-10">
+    <div class="content-section">
+        <h1 class="font-Roboto-Black mt-10">Пользователи</h1>
+    <div class="media">
+    {% if users|length > 0 %}
+        {% for user in users %}
+        <img class="rounded-circle account-img" src="{{ url_for('static', filename='photos/' + user.image_file) }}" width="150" height="150">
+    </div>
+    <div class="media-body">
+        <h2 class="account-heading">{{ user.username }}</h2>
+        <p class="text-secondary">{{ user.email }}</p>
+    </div>
+    <div class="content-section">
+        <a class="btn btn-sm btn-outline-danger" href="#">Удалить</a>
+        <a class="btn btn-sm btn-outline-warning" href="#">Редактировать</a>
+    </div>
+        {% endfor %}
+
+    {% else %}
+    <p>У нас ещё нет пользователей</p>
+    {% endif %}
+    </div>
+    </div>
+{% endblock %}
