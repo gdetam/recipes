@@ -9,11 +9,14 @@ from flask_login import current_user
 from forms.update_account_form import UpdateAccountForm
 
 from models.db import db
+from models.user import Users
 
+from routers.login_required import login_required
 from routers.picture_saver import save_picture
 
 
 @app.route('/account', methods=['POST', 'GET'])
+@login_required(default_role=(1 if Users.role == 1 else 2))
 def account():
     """Router for account page."""
     form = UpdateAccountForm()
@@ -29,10 +32,12 @@ def account():
     elif request.method == 'GET':
         form.username.data = current_user.username
         form.email.data = current_user.email
+    recipes = current_user.recipes
     image_file = url_for('static',
                          filename='photos/' + current_user.image_file)
     return render_template('account.html',
                            title='Профиль',
                            image_file=image_file,
+                           recipes=recipes,
                            legend='Редактирование профиля',
                            form=form)

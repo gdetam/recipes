@@ -16,10 +16,12 @@ from models.db import db
 from models.recipe import Recipes
 from models.user import Users
 
+from routers.login_required import login_required
 from routers.picture_saver import save_picture
 
 
 @app.route('/recipe/create', methods=['POST', 'GET'])
+@login_required(default_role=(1 if Users.role == 1 else 2))
 def create_recipe():
     """Router for create recipe page."""
     form = RecipeForm()

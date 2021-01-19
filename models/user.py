@@ -1,8 +1,12 @@
 """this is users table structure."""
 
-from app import login_manager
+from time import time
+
+from app import app, login_manager
 
 from flask_login import UserMixin
+
+import jwt
 
 from models.db import db
 
@@ -25,6 +29,22 @@ class Users(db.Model, UserMixin):
     recipes = db.relationship('Recipes', backref='author', lazy=True)
     is_active = db.Column(db.Boolean, default=True)
     role = db.Column(db.Integer, default='2')
+
+    def get_reset_token(self, expires_sec=1800):
+        """Get reset token for change the password."""
+        return jwt.encode({'reset_password': self.id, 'exp': time() + expires_sec},
+                          app.config['SECRET_KEY'], algorithm='HS256').decode('utf-8')
+
+    @staticmethod
+    def verify_reset_token(token):
+        """Verify reset token for change the password."""
+        try:
+            id = jwt.decode(token,
+                            app.config['SECRET_KEY'],
+                            algorithms=['HS256'])['reset_password']
+        except:
+            return
+        return Users.query.get(id)
 
     def __rerp__(self):
         """Representation string of an Users object."""
