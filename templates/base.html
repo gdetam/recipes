@@ -11,6 +11,9 @@
         <a class="p-2 text-dark" href="{{ url_for('recipes') }}">Рецепты</a>
         <a class="p-2 text-dark" href="{{ url_for('categories') }}">Категории</a>
         <a class="p-2 text-dark" href="{{ url_for('random_recipe') }}">Случайный рецепт</a>
+        {% if current_user.role == 1 %}
+            <a class="p-2 text-dark" href="#">Пользователи</a>
+        {% endif %}
         {% if current_user.is_authenticated %}
             <a class="btn btn-outline-success mr-sm-2" href="{{ url_for('create_recipe') }}">Добавить рецепт</a>
             <a class="btn btn-outline-primary" href="{{ url_for('account') }}">Профиль</a>
@@ -20,7 +23,6 @@
             <a class="btn btn-outline-secondary" href="{{ url_for('register') }}">Зарегистрироваться</a>
         {% endif %}
         </nav>
-
     </div>
 </head>
 <body>

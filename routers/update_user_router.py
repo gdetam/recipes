@@ -10,10 +10,12 @@ from forms.update_account_form import UpdateAccountForm
 
 from models.db import db
 
+from routers.login_required import login_required
 from routers.picture_saver import save_picture
 
 
 @app.route('/users/<int:user_id>/update', methods=['POST', 'GET'])
+@login_required(default_role=1)
 def update_user(user_id: int):
     """Router for update users."""
     user = get_user(user_id)

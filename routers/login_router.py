@@ -14,6 +14,8 @@ from models.user import Users
 @app.route('/login', methods=['POST', 'GET'])
 def login():
     """Router for login page."""
+    if current_user.is_authenticated:
+        return redirect(url_for('home'))
     form = LoginForm()
     if form.validate_on_submit():
         user = Users.query.filter_by(email=form.email.data).first()
