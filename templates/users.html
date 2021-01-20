@@ -18,7 +18,7 @@
         <p class="text-secondary">{{ user.email }}</p>
     </div>
     <div class="content-section">
-        <a class="btn btn-sm btn-outline-danger" href="#">Удалить</a>
+        <a class="btn btn-sm btn-outline-danger" href="/users/{{ user.id }}/delete">Удалить</a>
         <a class="btn btn-sm btn-outline-warning" href="/users/{{ user.id }}/update">Редактировать</a>
     </div>
         {% endfor %}
