@@ -31,7 +31,7 @@ class UpdateAccountForm(FlaskForm):
 
     def validate_email(self, email):
         """Validate email in update account form."""
-        if email.data != current_user.email:
+        if email.data != current_user.email and current_user.role != 1:
             user = Users.query.filter_by(email=email.data).first()
             if user:
                 raise ValidationError('Эта электронная почта уже существует!')
