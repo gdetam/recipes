@@ -4,7 +4,7 @@
 
 Recipe is a web application for selecting and adding recipes. You can select a prescription either by category or by browsing the list of recipes. In the Web application - Recipe, the selection of a random recipe is implemented.
 
-##### Environment :snake:
+##### Used tools :snake:
 
 Postgresql 12.4 
 Python 3.8.3 
@@ -25,7 +25,7 @@ Recipe is an open source web application licensed under the MIT license.
 
 Рецепт - это веб-приложение для выбора и добавления рецептов. Вы можете выбрать арецепт как по категориям, так и просматривая список рецептов. В Веб-приложении - Рецепт реализован выбор случайного рецепта.
 
-##### Окружение :snake:
+##### Используемые инструменты :snake:
 
 Postgresql 12.4 
 Python 3.8.3 
